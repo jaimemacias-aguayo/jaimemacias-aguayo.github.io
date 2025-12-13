@@ -3,36 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaime Macías | MIT Researcher</title>
-    <!-- ESTILOS INLINE - 100% FUNCIONAL -->
+    <title>Jaime Macías | MIT Postdoctoral Researcher</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* RESET BÁSICO */
+        :root {
+            --primary: #1F2A44;
+            --accent: #637081;
+            --bg: #FAF8F4;
+            --soft-bg: #D9CDBF;
+            --neutral: #B29A84;
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
             font-family: "Times New Roman", Times, serif;
-            background-color: #FAF8F4; /* Blanco crema */
-            color: #333333;
+            background: var(--bg);
+            color: #333;
             line-height: 1.6;
             padding-top: 80px;
         }
         
-        /* HEADER */
-        header {
-            background: #1F2A44; /* Azul oscuro */
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 15px 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+        h1, h2, h3 { font-family: Georgia, serif; }
         
         .container {
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
+        }
+        
+        /* HEADER */
+        header {
+            background: var(--primary);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .header-container {
@@ -43,15 +52,12 @@
         
         .logo {
             color: white;
-            font-family: 'Georgia', serif;
             font-size: 24px;
             font-weight: bold;
             text-decoration: none;
         }
         
-        .logo span {
-            color: #D9CDBF; /* Khaki claro */
-        }
+        .logo span { color: var(--soft-bg); }
         
         nav ul {
             display: flex;
@@ -65,13 +71,11 @@
             font-size: 16px;
         }
         
-        nav a:hover {
-            color: #D9CDBF;
-        }
+        nav a:hover { color: var(--soft-bg); }
         
         .cv-btn {
             background: white;
-            color: #1F2A44;
+            color: var(--primary);
             padding: 8px 20px;
             border-radius: 4px;
             font-weight: bold;
@@ -97,21 +101,17 @@
             text-align: center;
         }
         
-        .profile-placeholder {
+        .profile-img {
             width: 280px;
             height: 280px;
             border-radius: 50%;
-            background: #D9CDBF; /* Khaki claro */
+            background: var(--soft-bg);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 10px solid #B29A84; /* Café claro */
+            border: 10px solid var(--neutral);
             margin: 0 auto;
-        }
-        
-        .profile-placeholder i {
-            font-size: 70px;
-            color: #637081; /* Azul slate */
+            overflow: hidden; /* IMPORTANTE para la foto */
         }
         
         .hero-content {
@@ -119,15 +119,14 @@
         }
         
         .hero-content h1 {
-            font-family: 'Georgia', serif;
             font-size: 36px;
-            color: #1F2A44; /* Azul oscuro */
+            color: var(--primary);
             margin-bottom: 10px;
         }
         
-        .hero-content .subtitle {
+        .subtitle {
             font-size: 20px;
-            color: #637081; /* Azul slate */
+            color: var(--accent);
             margin-bottom: 20px;
             font-weight: 500;
         }
@@ -140,8 +139,8 @@
         
         .btn {
             display: inline-block;
-            background: #1F2A44; /* Azul oscuro */
-            color: #FAF8F4; /* Blanco crema */
+            background: var(--primary);
+            color: white;
             padding: 12px 30px;
             border-radius: 4px;
             text-decoration: none;
@@ -152,7 +151,49 @@
         }
         
         .btn:hover {
-            background: #637081; /* Azul slate */
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* SECTIONS */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--neutral);
+        }
+        
+        /* ABOUT SECTION */
+        .about {
+            background: var(--soft-bg);
+        }
+        
+        .about-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
         }
         
         /* RESPONSIVE */
@@ -162,19 +203,16 @@
                 text-align: center;
             }
             
-            .hero-content h1 {
-                font-size: 30px;
-            }
+            .hero-content h1 { font-size: 30px; }
             
-            nav ul {
-                gap: 15px;
+            .profile-img {
+                width: 250px;
+                height: 250px;
             }
         }
         
         @media (max-width: 600px) {
-            body {
-                padding-top: 70px;
-            }
+            body { padding-top: 70px; }
             
             .header-container {
                 flex-direction: column;
@@ -186,14 +224,12 @@
                 justify-content: center;
             }
             
-            .profile-placeholder {
+            .profile-img {
                 width: 220px;
                 height: 220px;
             }
         }
     </style>
-    <!-- ICONOS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- HEADER -->
@@ -212,12 +248,13 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION CON FOTO -->
     <section class="hero" id="home">
         <div class="container hero-container">
             <div class="hero-image">
-                <div class="profile-placeholder">
-                    <i class="fas fa-user-graduate"></i>
+                <div class="profile-img">
+                    <!-- CAMBIA ESTO POR TU FOTO -->
+                    <img src="foto-perfil.jpg" alt="Jaime Macías" style="width:100%;height:100%;object-fit:cover;">
                 </div>
             </div>
             <div class="hero-content">
@@ -230,16 +267,40 @@
         </div>
     </section>
 
-    <!-- Secciones vacías para después -->
-    <section id="about" style="padding: 80px 0; background: #D9CDBF; text-align: center;">
+    <!-- ABOUT SECTION (Placeholder) -->
+    <section id="about" class="about">
         <div class="container">
-            <h2 style="font-family: 'Georgia'; color: #1F2A44; margin-bottom: 20px;">About Section</h2>
-            <p style="color: #333;">(Esta sección se llenará después)</p>
+            <div class="section-title">
+                <h2>About</h2>
+            </div>
+            <div class="about-content">
+                <p>Information about Jaime Macías will be added here.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH SECTION (Placeholder) -->
+    <section id="research">
+        <div class="container">
+            <div class="section-title">
+                <h2>Research</h2>
+            </div>
+            <p style="text-align: center;">Research publications will be added here.</p>
+        </div>
+    </section>
+
+    <!-- TEACHING SECTION (Placeholder) -->
+    <section id="teaching" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Teaching</h2>
+            </div>
+            <p style="text-align: center;">Teaching experience will be added here.</p>
         </div>
     </section>
 
     <script>
-        // JavaScript simple para navegación suave
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -256,10 +317,9 @@
             });
         });
         
-        // Mostrar mensaje en consola
-        console.log('Página de Jaime Macías cargada correctamente');
+        console.log('Website loaded successfully');
     </script>
 </body>
-
 </html>
+
 
