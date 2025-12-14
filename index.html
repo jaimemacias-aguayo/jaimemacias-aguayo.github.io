@@ -323,6 +323,107 @@
             font-size: 16px;
         }
         
+        /* BOTONES PARA COLAPSAR/EXPANDIR */
+        .toggle-btn {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            float: right;
+            margin-top: -5px;
+        }
+        
+        .toggle-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .toggle-btn.active {
+            background: var(--primary);
+        }
+        
+        /* ESTILOS PARA EXPERIENCIA DE ENSEÑANZA */
+        .institution-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--neutral);
+        }
+        
+        .institution-name {
+            color: var(--primary);
+            font-size: 22px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .course-level {
+            color: var(--accent);
+            font-size: 14px;
+            font-style: italic;
+            margin-left: 10px;
+        }
+        
+        .course-list {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 25px;
+        }
+        
+        .course-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .course-item:last-child {
+            border-bottom: none;
+        }
+        
+        .course-title {
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .course-years {
+            color: var(--text-light);
+            font-size: 14px;
+            min-width: 120px;
+            text-align: right;
+        }
+        
+        .compact-block {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border-left: 3px solid var(--neutral);
+        }
+        
+        .compact-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .compact-item {
+            padding: 8px 12px;
+            background: rgba(232, 226, 217, 0.3);
+            border-radius: 4px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
         /* FOOTER */
         footer {
             background: var(--primary);
@@ -414,6 +515,22 @@
             .contact-info {
                 justify-content: center;
             }
+            
+            .toggle-btn {
+                float: none;
+                display: block;
+                margin: 10px auto;
+            }
+            
+            .institution-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .compact-list {
+                grid-template-columns: 1fr;
+            }
         }
         
         @media (max-width: 768px) {
@@ -450,6 +567,17 @@
             .email-link, .linkedin-link {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            .course-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+            
+            .course-years {
+                text-align: left;
+                min-width: auto;
             }
         }
         
@@ -490,6 +618,10 @@
                 padding: 10px 20px;
                 font-size: 15px;
             }
+            
+            .institution-name {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
@@ -497,7 +629,7 @@
     <!-- HEADER -->
     <header id="header">
         <div class="container header-container">
-            <a href="#" class="logo">Jaime<span> Macias Aguayo</span></a>
+            <a href="#" class="logo">Jaime Macias Aguayo</span></a>
             <nav>
                 <ul>
                     <li><a href="#home" class="active">Home</a></li>
@@ -549,7 +681,7 @@
             </div>
             <div class="section-content">
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Biography</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">
                     <p>I am a Postdoctoral Research Associate at the Massachusetts Institute of Technology, Center for Transportation and Logistics. My research focuses on supply chain optimization, logistics management, and sustainable transportation systems.</p>
                     
                     <div style="margin-top: 30px;">
@@ -585,41 +717,108 @@
                 <h2>Research</h2>
             </div>
             <div class="section-content">
+                
+                <!-- Job Market Paper -->
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 25px;">Selected Publications</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 25px; border-bottom: 2px solid var(--neutral); padding-bottom: 10px;">Job Market Paper</h3>
                     
                     <div class="publication-item">
-                        <div class="publication-title">Optimizing Last-Mile Delivery in Urban Environments</div>
-                        <div class="publication-authors">Macías, J., Smith, A., Johnson, R.</div>
-                        <div class="publication-journal">Transportation Research Part E: Logistics and Transportation Review, 2023</div>
-                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
-                            <i class="fas fa-external-link-alt"></i> View Abstract
-                        </a>
-                    </div>
-                    
-                    <div class="publication-item">
-                        <div class="publication-title">Sustainable Supply Chain Networks: A Multi-Objective Approach</div>
-                        <div class="publication-authors">Macías, J., Chen, L.</div>
-                        <div class="publication-journal">Journal of Cleaner Production, 2022</div>
-                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
-                            <i class="fas fa-external-link-alt"></i> View Abstract
-                        </a>
-                    </div>
-                    
-                    <div class="publication-item">
-                        <div class="publication-title">Machine Learning Applications in Logistics</div>
-                        <div class="publication-authors">Wilson, P., Macías, J., Rodriguez, M.</div>
-                        <div class="publication-journal">International Journal of Production Research, 2021</div>
+                        <div class="publication-title">Valuing Real-Time Digital Monitoring for On-Time Operational Performance</div>
+                        <div class="publication-authors">Macias-Aguayo, J., McFarlane, D., & Dhada, M.</div>
+                        <div class="publication-journal">Production and Operations Management (reviewed, 2024)</div>
                         <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
                             <i class="fas fa-external-link-alt"></i> View Abstract
                         </a>
                     </div>
                 </div>
                 
+                <!-- Peer-Reviewed Journal Articles -->
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Ongoing Projects</h3>
-                    <p>Currently working on a MIT-sponsored research project exploring the impact of autonomous vehicles on urban logistics networks and their potential for reducing carbon emissions in metropolitan areas.</p>
+                    <h3 style="color: var(--primary); margin-bottom: 25px; border-bottom: 2px solid var(--neutral); padding-bottom: 10px;">Peer-Reviewed Journal Articles</h3>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Industry 4.0 and Lean Six Sigma Integration: A Systematic Review of Barriers and Enablers</div>
+                        <div class="publication-authors">Macias-Aguayo, J., et al.</div>
+                        <div class="publication-journal">Applied Sciences, 2022</div>
+                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
+                            <i class="fas fa-external-link-alt"></i> View Abstract
+                        </a>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">A Data-Driven and Context-Aware Approach for Demand Forecasting in the Beverage Industry</div>
+                        <div class="publication-authors">Ma, B. J., et al.</div>
+                        <div class="publication-journal">International Journal of Logistics Research and Applications (Accepted)</div>
+                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
+                            <i class="fas fa-external-link-alt"></i> View Abstract
+                        </a>
+                    </div>
                 </div>
+                
+                <!-- Practice-Oriented Publication -->
+                <div class="card" style="border-left: 4px solid var(--highlight);">
+                    <h3 style="color: var(--primary); margin-bottom: 25px; border-bottom: 2px solid var(--neutral); padding-bottom: 10px;">Practice-Oriented Publication</h3>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">How to Automate Operations Without Breaking the Bank</div>
+                        <div class="publication-authors">Macias-Aguayo, J., et al.</div>
+                        <div class="publication-journal">MIT Sloan Management Review, 2025</div>
+                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
+                            <i class="fas fa-external-link-alt"></i> View Article
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Research in Progress -->
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 25px; border-bottom: 2px solid var(--neutral); padding-bottom: 10px;">Research in Progress</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <h4 style="color: var(--accent); margin-bottom: 8px;">Integrating Exogenous Variables into Demand Forecasting: A Value Quantification Approach</h4>
+                        <p style="color: var(--text-light); font-size: 16px;">Preparing for submission to Management Science / M&SOM</p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: var(--accent); margin-bottom: 8px;">Collaborative Learning for Demand Forecasting in City Logistics</h4>
+                        <p style="color: var(--text-light); font-size: 16px;">Preparing for submission to International Journal of Production Research</p>
+                    </div>
+                </div>
+                
+                <!-- Conference Proceedings (Colapsable) -->
+                <div class="card">
+                    <div class="institution-header">
+                        <h3 style="color: var(--primary); margin: 0;">Conference Proceedings</h3>
+                        <button id="toggleConference" class="toggle-btn">View conference papers</button>
+                    </div>
+                    
+                    <div id="conferenceList" style="display: none;">
+                        <div class="publication-item">
+                            <div class="publication-title">The Role of Low-Cost Digitalisation in Improving Operations Management</div>
+                            <div class="publication-journal">SOHOMA Conference Proceedings</div>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <div class="publication-title">Low-Cost Very Narrow Aisle Pallet Racking Vehicle Utilisation Monitoring Solution</div>
+                            <div class="publication-journal">LoDISA Conference Proceedings</div>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <div class="publication-title">Impact Assessment Model for Low-Cost Digitalisation</div>
+                            <div class="publication-journal">IOP Conference Proceedings</div>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <div class="publication-title">A Catalogue of Digital Solution Areas for Logistics SMEs</div>
+                            <div class="publication-journal">IFAC Conference Proceedings</div>
+                        </div>
+                        
+                        <div class="publication-item">
+                            <div class="publication-title">Design of Inventory Replenishment Policies in the Hospital Sector</div>
+                            <div class="publication-journal">LACCEI Conference Proceedings</div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </section>
@@ -628,41 +827,131 @@
     <section id="teaching" style="background: var(--soft-bg);">
         <div class="container">
             <div class="section-title">
-                <h2>Teaching</h2>
+                <h2>Teaching Experience</h2>
             </div>
             <div class="section-content">
+                
+                <!-- MIT Teaching Experience -->
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 25px;">Courses Taught</h3>
-                    
-                    <div style="margin-bottom: 30px;">
-                        <h4 style="color: var(--accent); margin-bottom: 10px;">At MIT</h4>
-                        <ul style="list-style: none; padding-left: 0;">
-                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
-                                <strong>SCM.251 - Introduction to Transportation Systems</strong><br>
-                                <em>Spring 2023, Fall 2023</em>
-                            </li>
-                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
-                                <strong>SCM.410 - Logistics and Supply Chain Management</strong><br>
-                                <em>Fall 2022</em>
-                            </li>
-                        </ul>
+                    <div class="institution-header">
+                        <h3 class="institution-name">Massachusetts Institute of Technology (MIT)</h3>
                     </div>
                     
-                    <div>
-                        <h4 style="color: var(--accent); margin-bottom: 10px;">Previous Institutions</h4>
-                        <ul style="list-style: none; padding-left: 0;">
-                            <li style="padding: 10px 0;">
-                                <strong>Operations Research Fundamentals</strong><br>
-                                <em>PhD Program, University of California, 2020-2021</em>
-                            </li>
-                        </ul>
+                    <ul class="course-list">
+                        <li class="course-item">
+                            <div>
+                                <div class="course-title">Analytical Methods for Supply Chain Management II</div>
+                                <div class="course-level">Graduate (MS in Supply Chain Management)</div>
+                            </div>
+                            <div class="course-years">Winter 2025</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- University of Cambridge Teaching Experience -->
+                <div class="card">
+                    <div class="institution-header">
+                        <h3 class="institution-name">University of Cambridge</h3>
+                    </div>
+                    
+                    <ul class="course-list">
+                        <li class="course-item">
+                            <div>
+                                <div class="course-title">Data and Decision Science (DDS)</div>
+                                <div class="course-level">Graduate</div>
+                            </div>
+                            <div class="course-years">2022–2023</div>
+                        </li>
+                        <li class="course-item">
+                            <div>
+                                <div class="course-title">Data and Modelling (M3)</div>
+                                <div class="course-level">Graduate</div>
+                            </div>
+                            <div class="course-years">2022–2023</div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- ESPOL Teaching Experience (Compact Block) -->
+                <div class="card">
+                    <div class="institution-header">
+                        <h3 class="institution-name">Escuela Superior Politécnica del Litoral (ESPOL), Ecuador</h3>
+                        <button id="toggleEspol" class="toggle-btn">View all courses</button>
+                    </div>
+                    
+                    <p style="color: var(--text-light); margin-bottom: 15px; font-style: italic;">
+                        Extensive teaching experience across undergraduate and graduate programs in Industrial Engineering and Supply Chain Management.
+                    </p>
+                    
+                    <div id="espolCourses" class="compact-block" style="display: none;">
+                        <div class="compact-list">
+                            <div class="compact-item">
+                                <span>Methods Engineering</span>
+                                <span>2016–2020</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Operations Research II</span>
+                                <span>2016</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Introduction to Industrial Engineering</span>
+                                <span>2016</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Process Value Analysis</span>
+                                <span>2017–2018</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Sustainable Supply Chain Management</span>
+                                <span>2017–2018</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Forecasting and Inventory Control</span>
+                                <span>2018–2020</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Stochastic Models for Manufacturing and Services</span>
+                                <span>2018–2019</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Product Value Analysis</span>
+                                <span>2020</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Operations Planning — Professional Master's</span>
+                                <span>2023</span>
+                            </div>
+                            <div class="compact-item">
+                                <span>Fundamentals of Logistics and Supply Chains — Professional Master's</span>
+                                <span>2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Vista compacta inicial -->
+                    <div id="espolCompact" style="margin-top: 15px;">
+                        <p style="color: var(--text-light); font-size: 15px;">
+                            <strong>Key courses:</strong> Methods Engineering (2016-2020), Forecasting and Inventory Control (2018-2020), 
+                            Sustainable Supply Chain Management (2017-2018), Operations Planning (Professional Master's, 2023), 
+                            Fundamentals of Logistics and Supply Chains (Professional Master's, 2023)
+                        </p>
                     </div>
                 </div>
                 
+                <!-- Student Advising -->
                 <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">Student Advising</h3>
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">Student Advising & Supervision</h3>
                     <p>Currently advising 3 graduate students on their thesis projects related to sustainable logistics and supply chain optimization. Supervised 5 undergraduate research projects in the past academic year.</p>
+                    
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                        <h4 style="color: var(--accent); margin-bottom: 10px;">Teaching Philosophy</h4>
+                        <p style="color: var(--text-light); font-size: 16px;">
+                            Focus on bridging theoretical frameworks with practical applications in supply chain and operations management. 
+                            Emphasize data-driven decision making and the integration of emerging technologies in logistics education.
+                        </p>
+                    </div>
                 </div>
+                
             </div>
         </div>
     </section>
@@ -775,13 +1064,46 @@
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
+        // Toggle conference proceedings visibility
+        document.getElementById('toggleConference').addEventListener('click', function() {
+            const conferenceList = document.getElementById('conferenceList');
+            const button = this;
+            
+            if (conferenceList.style.display === 'none' || conferenceList.style.display === '') {
+                conferenceList.style.display = 'block';
+                button.textContent = 'Hide conference papers';
+                button.classList.add('active');
+            } else {
+                conferenceList.style.display = 'none';
+                button.textContent = 'View conference papers';
+                button.classList.remove('active');
+            }
+        });
+        
+        // Toggle ESPOL courses visibility
+        document.getElementById('toggleEspol').addEventListener('click', function() {
+            const espolCourses = document.getElementById('espolCourses');
+            const espolCompact = document.getElementById('espolCompact');
+            const button = this;
+            
+            if (espolCourses.style.display === 'none' || espolCourses.style.display === '') {
+                espolCourses.style.display = 'block';
+                espolCompact.style.display = 'none';
+                button.textContent = 'Show compact view';
+                button.classList.add('active');
+            } else {
+                espolCourses.style.display = 'none';
+                espolCompact.style.display = 'block';
+                button.textContent = 'View all courses';
+                button.classList.remove('active');
+            }
+        });
+        
         // Page loaded message
         console.log('Jaime Macías - Academic Portfolio loaded successfully');
     </script>
 </body>
     </html>
-
-
 
 
 
