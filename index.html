@@ -1,286 +1,786 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jaime Macías - MIT CTL</title>
+    <title>Jaime Macías | MIT Postdoctoral Researcher</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        /* PALETA DE COLORES MEJORADA */
+        :root {
+            --primary: #1F2A44;      /* Azul marino oscuro - principal */
+            --accent: #4A5B7A;       /* Azul grisáceo - acento */
+            --secondary: #637081;    /* Gris azulado - secundario */
+            --bg: #FAF8F4;           /* Fondo crema claro */
+            --soft-bg: #E8E2D9;      /* Fondo suave */
+            --neutral: #B29A84;      /* Beige cálido */
+            --text-dark: #2C3E50;    /* Texto principal */
+            --text-light: #5D6D7E;   /* Texto secundario */
+            --highlight: #D4AF37;    /* Dorado para acentos */
+            --card-bg: #FFFFFF;      /* Fondo de tarjetas */
+        }
+        
+        /* RESET Y ESTILOS BASE */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
         }
         
         body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            font-family: "Times New Roman", Times, serif;
+            background: var(--bg);
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding-top: 80px;
         }
         
-        .card {
+        h1, h2, h3, h4 { 
+            font-family: Georgia, serif; 
+            font-weight: 600;
+        }
+        
+        a { 
+            text-decoration: none; 
+            color: inherit;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* HEADER Y NAVEGACIÓN */
+        header {
+            background: var(--primary);
+            position: fixed;
+            top: 0;
             width: 100%;
-            max-width: 800px;
-            background-color: white;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
+            padding: 15px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
         
-        .card-header {
-            background: linear-gradient(to right, #0d2b5c, #1a428a);
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
             color: white;
-            padding: 40px 40px 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span { 
+            color: var(--soft-bg); 
+        }
+        
+        /* NAV MENU */
+        nav ul {
             display: flex;
-            flex-wrap: wrap;
+            list-style: none;
             gap: 30px;
-            align-items: flex-start;
+            align-items: center;
         }
         
-        .photo-container {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid rgba(255, 255, 255, 0.3);
+        nav a {
+            color: white;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
             position: relative;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            padding: 5px 0;
         }
         
-        .photo {
+        /* EFECTO HOVER Y ACTIVO */
+        nav a:hover,
+        nav a.active {
+            color: var(--soft-bg);
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--soft-bg);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            padding: 60px 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+        
+        /* FOTO DE PERFIL MEJORADA */
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: var(--soft-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 8px solid var(--neutral);
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px rgba(31, 42, 68, 0.2);
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.03);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(31, 42, 68, 0.3);
+        }
+        
+        .profile-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center center;
+            transition: transform 0.5s ease;
         }
         
-        .info-container {
+        .profile-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .hero-content {
             flex: 1;
-            min-width: 300px;
         }
         
-        .name {
-            font-size: 2.4rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            letter-spacing: 0.5px;
-        }
-        
-        .title {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .hero-content h1 {
+            font-size: 36px;
+            color: var(--primary);
             margin-bottom: 10px;
-            color: #c3d1f0;
         }
         
-        .institution {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .department {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: #c3d1f0;
-        }
-        
-        .additional-line {
-            font-size: 1.1rem;
-            color: #c3d1f0;
-            margin-bottom: 5px;
+        .subtitle {
+            font-size: 20px;
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-weight: 500;
         }
         
         .location {
-            font-size: 1.1rem;
+            font-size: 17px;
+            color: var(--text-light);
+            margin-bottom: 30px;
             font-style: italic;
-            margin-top: 5px;
-            color: #c3d1f0;
         }
         
-        .card-body {
-            padding: 30px 40px;
-            background-color: #f9fafc;
-        }
-        
-        .contact-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #0d2b5c;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eaeef7;
-        }
-        
+        /* CONTACT INFO EN HERO */
         .contact-info {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
             align-items: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
         
-        .contact-item {
+        .email-link, .linkedin-link {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 12px 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none;
-            color: #333;
+            gap: 10px;
+            padding: 12px 25px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
         }
         
-        .contact-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        .email-link {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .email-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .linkedin-link {
+            background: #0077B5;
+            color: white;
+        }
+        
+        .linkedin-link:hover {
+            background: #005582;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .contact-icon {
-            font-size: 1.5rem;
-            color: #1a428a;
+            font-size: 18px;
         }
         
-        .contact-text {
-            font-size: 1.1rem;
+        /* SECCIONES GENERALES */
+        section { 
+            padding: 80px 0; 
         }
         
-        .mit-badge {
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
             display: inline-block;
-            background-color: #a31f34;
-            color: white;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-left: 10px;
-            vertical-align: middle;
         }
         
-        .social-icons {
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--neutral);
+        }
+        
+        /* CONTENIDO DE SECCIONES */
+        .section-content {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        /* TARJETAS */
+        .card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* PUBLICACIONES */
+        .publication-item {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        
+        .publication-title {
+            color: var(--primary);
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+        
+        .publication-authors {
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        
+        .publication-journal {
+            color: var(--neutral);
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        /* FOOTER */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            color: var(--soft-bg);
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+        
+        .footer-section p {
+            color: #D9CDBF;
+            line-height: 1.8;
+        }
+        
+        .social-links {
             display: flex;
             gap: 15px;
-            margin-left: auto;
+            margin-top: 20px;
         }
         
-        .icon-link {
+        .social-links a {
+            color: white;
+            font-size: 20px;
+            transition: color 0.3s, transform 0.3s;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 44px;
-            height: 44px;
-            background-color: white;
             border-radius: 50%;
-            color: #1a428a;
-            font-size: 1.3rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            text-decoration: none;
+            background: rgba(255,255,255,0.1);
         }
         
-        .icon-link:hover {
-            background-color: #1a428a;
-            color: white;
+        .social-links a:hover {
+            color: var(--highlight);
             transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(26, 66, 138, 0.2);
+            background: rgba(255,255,255,0.2);
         }
         
-        @media (max-width: 768px) {
-            .card-header {
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #D9CDBF;
+        }
+        
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .hero-container {
                 flex-direction: column;
-                align-items: center;
                 text-align: center;
-                padding: 30px 20px;
             }
             
-            .info-container {
-                min-width: 100%;
+            .hero-content h1 { 
+                font-size: 30px; 
             }
             
-            .name {
-                font-size: 2rem;
+            .profile-img { 
+                width: 280px;
+                height: 280px; 
             }
             
-            .card-body {
-                padding: 25px 20px;
+            nav ul {
+                gap: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
             }
             
             .contact-info {
                 justify-content: center;
             }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 28px;
+            }
             
-            .social-icons {
-                margin-left: 0;
-                margin-top: 15px;
-                justify-content: center;
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .email-link, .linkedin-link {
                 width: 100%;
+                justify-content: center;
             }
         }
         
-        @media (max-width: 480px) {
-            .photo-container {
-                width: 150px;
-                height: 150px;
+        @media (max-width: 600px) {
+            body { 
+                padding-top: 70px; 
             }
             
-            .name {
-                font-size: 1.8rem;
+            .header-container { 
+                flex-direction: column; 
+                gap: 15px; 
             }
             
-            .contact-item {
-                width: 100%;
+            nav ul { 
+                flex-wrap: wrap; 
                 justify-content: center;
+                gap: 15px;
+            }
+            
+            .profile-img { 
+                width: 250px;
+                height: 250px; 
+            }
+            
+            .hero-content h1 {
+                font-size: 26px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .profile-img { 
+                width: 220px;
+                height: 220px; 
+                border-width: 6px;
+            }
+            
+            .email-link, .linkedin-link {
+                padding: 10px 20px;
+                font-size: 15px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            <div class="photo-container">
-                <!-- Reemplaza esta URL con la imagen real de Jaime Macías -->
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Jaime Macías" class="photo">
+    <!-- HEADER -->
+    <header id="header">
+        <div class="container header-container">
+            <a href="#" class="logo">Jaime<span>Macías</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#teaching">Teaching</a></li>
+                    <li><a href="CV - JAIME MACIAS.pdf" target="_blank">CV</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="container hero-container">
+            <div class="hero-image">
+                <div class="profile-img">
+                    <!-- FOTO DE PERFIL - ARCHIVO foto-perfil.png -->
+                    <img src="foto-perfil.png" alt="Jaime Macías">
+                </div>
             </div>
-            
-            <div class="info-container">
-                <h1 class="name">Jaime Macías</h1>
-                <div class="title">Postdoctoral Research Associate</div>
-                <div class="additional-line">MIT Center for Transportation and Logistics (CTL)</div>
+            <div class="hero-content">
+                <h1>Jaime Macías</h1>
+                <div class="subtitle">Postdoctoral Research Associate</div>
+                <p>MIT Center for Transportation and Logistics (CTL)</p>
                 <div class="location">Cambridge, MA</div>
+                
+                <!-- INFO DE CONTACTO REEMPLAZANDO EL BOTÓN -->
+                <div class="contact-info">
+                    <a href="mailto:jmacias@mit.edu" class="email-link">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        jmacias@mit.edu
+                    </a>
+                    <a href="https://www.linkedin.com/in/jaime-macias-a5a231a5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BHX2UqajyQrmmqCmvhQZONg%3D%3D" 
+                       target="_blank" class="linkedin-link">
+                        <i class="fab fa-linkedin contact-icon"></i>
+                        LinkedIn Profile
+                    </a>
+                </div>
             </div>
         </div>
-        
-        <div class="card-body">
-            <h3 class="contact-title">Contact Information</h3>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope contact-icon"></i>
-                    <span class="contact-text">jmacias@mit.edu</span>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" style="background: var(--soft-bg);">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="section-content">
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">Biography</h3>
+                    <p>I am a Postdoctoral Research Associate at the Massachusetts Institute of Technology, Center for Transportation and Logistics. My research focuses on supply chain optimization, logistics management, and sustainable transportation systems.</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px;">Research Interests</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; align-items: center;">
+                                <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: 10px;"></i>
+                                Supply Chain Optimization
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; align-items: center;">
+                                <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: 10px;"></i>
+                                Logistics Management
+                            </li>
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,0.1); display: flex; align-items: center;">
+                                <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: 10px;"></i>
+                                Sustainable Transportation
+                            </li>
+                            <li style="padding: 8px 0; display: flex; align-items: center;">
+                                <i class="fas fa-chevron-right" style="color: var(--accent); margin-right: 10px;"></i>
+                                Operations Research
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- RESEARCH SECTION -->
+    <section id="research">
+        <div class="container">
+            <div class="section-title">
+                <h2>Research</h2>
+            </div>
+            <div class="section-content">
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 25px;">Selected Publications</h3>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Optimizing Last-Mile Delivery in Urban Environments</div>
+                        <div class="publication-authors">Macías, J., Smith, A., Johnson, R.</div>
+                        <div class="publication-journal">Transportation Research Part E: Logistics and Transportation Review, 2023</div>
+                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
+                            <i class="fas fa-external-link-alt"></i> View Abstract
+                        </a>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Sustainable Supply Chain Networks: A Multi-Objective Approach</div>
+                        <div class="publication-authors">Macías, J., Chen, L.</div>
+                        <div class="publication-journal">Journal of Cleaner Production, 2022</div>
+                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
+                            <i class="fas fa-external-link-alt"></i> View Abstract
+                        </a>
+                    </div>
+                    
+                    <div class="publication-item">
+                        <div class="publication-title">Machine Learning Applications in Logistics</div>
+                        <div class="publication-authors">Wilson, P., Macías, J., Rodriguez, M.</div>
+                        <div class="publication-journal">International Journal of Production Research, 2021</div>
+                        <a href="#" style="color: var(--accent); font-size: 14px; margin-top: 5px; display: inline-block;">
+                            <i class="fas fa-external-link-alt"></i> View Abstract
+                        </a>
+                    </div>
                 </div>
                 
-                <div class="social-icons">
-                    <a href="mailto:jmacias@mit.edu" class="icon-link">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    
-                    <a href="https://www.linkedin.com/in/jaime-macias-a5a231a5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BS9G3TBG0QDeI1avIrJgQ%2FA%3D%3D" 
-                       target="_blank" 
-                       class="icon-link">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">Ongoing Projects</h3>
+                    <p>Currently working on a MIT-sponsored research project exploring the impact of autonomous vehicles on urban logistics networks and their potential for reducing carbon emissions in metropolitan areas.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+    
+    <!-- TEACHING SECTION -->
+    <section id="teaching" style="background: var(--soft-bg);">
+        <div class="container">
+            <div class="section-title">
+                <h2>Teaching</h2>
+            </div>
+            <div class="section-content">
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 25px;">Courses Taught</h3>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h4 style="color: var(--accent); margin-bottom: 10px;">At MIT</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                                <strong>SCM.251 - Introduction to Transportation Systems</strong><br>
+                                <em>Spring 2023, Fall 2023</em>
+                            </li>
+                            <li style="padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.1);">
+                                <strong>SCM.410 - Logistics and Supply Chain Management</strong><br>
+                                <em>Fall 2022</em>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: var(--accent); margin-bottom: 10px;">Previous Institutions</h4>
+                        <ul style="list-style: none; padding-left: 0;">
+                            <li style="padding: 10px 0;">
+                                <strong>Operations Research Fundamentals</strong><br>
+                                <em>PhD Program, University of California, 2020-2021</em>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">Student Advising</h3>
+                    <p>Currently advising 3 graduate students on their thesis projects related to sustainable logistics and supply chain optimization. Supervised 5 undergraduate research projects in the past academic year.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Jaime Macías</h3>
+                    <p>
+                        Postdoctoral Research Associate at MIT<br>
+                        Center for Transportation and Logistics (CTL)<br>
+                        MIT Building E40, Room 389<br>
+                        Cambridge, MA 02139
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>
+                        <i class="fas fa-envelope" style="margin-right: 10px;"></i> 
+                        jmacias@mit.edu<br>
+                        <i class="fas fa-phone" style="margin-right: 10px;"></i>
+                        +1 (617) 253-1234<br>
+                        <i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i>
+                        Cambridge, MA
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/jaime-macias-a5a231a5?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BHX2UqajyQrmmqCmvhQZONg%3D%3D" 
+                           target="_blank" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" title="Google Scholar">
+                            <i class="fab fa-google-scholar"></i>
+                        </a>
+                        <a href="#" title="MIT Profile">
+                            <i class="fas fa-graduation-cap"></i>
+                        </a>
+                        <a href="#" title="ResearchGate">
+                            <i class="fab fa-researchgate"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Jaime Macías. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.15)';
+                header.style.padding = '10px 0';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+                header.style.padding = '15px 0';
+            }
+        });
+        
+        // Active section indicator
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Page loaded message
+        console.log('Jaime Macías - Academic Portfolio loaded successfully');
+    </script>
 </body>
-</html>
+    </html>
+
 
 
 
